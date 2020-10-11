@@ -29,6 +29,7 @@ class StaticPagesControllerController < ApplicationController
     if params[:user_id]
       flickr = Flickr.new ENV["FLICKR_KEY"], ENV["FLICKR_SECRET"]
       @photos = flickr.photos.search(user_id: params[:user_id])
+      @user_info = flickr.people.getInfo(user_id: params[:user_id])
     end
 
     if params[:newest_photo]
@@ -40,5 +41,11 @@ class StaticPagesControllerController < ApplicationController
       flickr = Flickr.new ENV["FLICKR_KEY"], ENV["FLICKR_SECRET"]
       @user_info = flickr.people.getInfo(user_id: params[:user_info])
     end
+
+    if params[:random_user]
+      flickr = Flickr.new ENV["FLICKR_KEY"], ENV["FLICKR_SECRET"]
+      @random_user = flickr.photos.getRecent.photo.sample.owner
+    end
   end
 end
+
