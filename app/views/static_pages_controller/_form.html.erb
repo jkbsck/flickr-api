@@ -1,0 +1,41 @@
+<div style="display: flex; justify-content: space-evenly; padding: 0 5vw 2vh 5vw; border-bottom: solid 1px; font-size: 12px;">
+  <div style="border-top: solid 1px; border-right: solid 1px; padding: 3vh 3vw 0 3vw;">
+    <%= form_with url: '/', local: true, method: "get" do |f| %>
+      <%= f.hidden_field :random_user, value: true %><br>
+      <%= f.submit 'Generate random user ID' %>
+    <% end %>
+
+    <div style="padding-top: 10px; text-align: center;">
+      <% if @random_user %>
+        <%= @random_user %><br>
+        <%= form_with url: '/', local: true, method: "get" do |f| %>
+          <%= f.hidden_field :user_id, value: @random_user %><br>
+          <%= f.submit "View this user's photos" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div style="border-top: solid 1px; border-right: solid 1px; padding: 3vh 3vw 0 3vw;">
+    <%= form_with url: '/', local: true, method: "get" do |f| %>
+      <%= f.label 'Photos by User ID:' %>
+      <%= f.text_field :user_id %><br><br>
+      <%= f.submit 'Search' %>
+    <% end %>
+  </div>
+
+  <div style="border-top: solid 1px; border-right: solid 1px; padding: 3vh 3vw 0 3vw;">
+    <%= form_with url: '/', local: true, method: "get" do |f| %>
+      <%= f.label 'User info by User ID:' %>
+      <%= f.text_field :user_info %><br><br>
+      <%= f.submit 'Search' %>
+    <% end %>
+  </div>
+
+  <div style="border-top: solid 1px; border-right: solid 1px; padding: 3vh 3vw 0 3vw;">
+    <%= form_with url: '/', local: true, method: "get" do |f| %>
+      <%= f.hidden_field :newest_photo, value: true %><br>
+      <%= f.submit 'View the newest photo' %>
+    <% end %>
+  </div>
+</div>

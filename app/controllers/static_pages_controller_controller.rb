@@ -35,6 +35,7 @@ class StaticPagesControllerController < ApplicationController
     if params[:newest_photo]
       flickr = Flickr.new ENV["FLICKR_KEY"], ENV["FLICKR_SECRET"]
       @photo = flickr.photos.getRecent.photo.first
+      @user_info = flickr.people.getInfo(user_id: @photo.owner)
     end
 
     if params[:user_info]

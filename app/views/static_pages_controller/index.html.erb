@@ -1,44 +1,12 @@
-<h1 style="text-align: center;">FLICKR API</h1>
-
-<div>
-  <div style="display: flex; justify-content: space-evenly; padding: 5vh; border-bottom: solid 1px; font-size: 12px;">
-    <div style="border-top: solid 1px; border-right: solid 1px; padding: 3vh 3vw 0 3vw;">
-      <%= form_with url: '/', local: true, method: "get" do |f| %>
-        <%= f.hidden_field :random_user, value: true %><br>
-        <%= f.submit 'Generate random user ID' %>
-      <% end %>
-
-      <div style="padding-top: 10px; text-align: center;">
-        <% if @random_user %>
-          <%= @random_user %>
-        <% end %>
-      </div>
-    </div>
-    
-    <div style="border-top: solid 1px; border-right: solid 1px; padding: 3vh 3vw 0 3vw;">
-      <%= form_with url: '/', local: true, method: "get" do |f| %>
-        <%= f.label 'Photos by User ID:' %>
-        <%= f.text_field :user_id %><br><br>
-        <%= f.submit 'Search' %>
-      <% end %>
-    </div>
-
-    <div style="border-top: solid 1px; border-right: solid 1px; padding: 3vh 3vw 0 3vw;">
-      <%= form_with url: '/', local: true, method: "get" do |f| %>
-        <%= f.label 'User info by User ID:' %>
-        <%= f.text_field :user_info %><br><br>
-        <%= f.submit 'Search' %>
-      <% end %>
-    </div>
-
-    <div style="border-top: solid 1px; border-right: solid 1px; padding: 3vh 3vw 0 3vw;">
-      <%= form_with url: '/', local: true, method: "get" do |f| %>
-        <%= f.hidden_field :newest_photo, value: true %><br>
-        <%= f.submit 'View the newest photo' %>
-      <% end %>
-    </div>
+<header style="position: sticky; top: 0; background-color: #fafcfc;">
+  <div style="display: flex; justify-content: center;">
+    <h1 style="text-align: center; border-top: solid 1px; border-bottom: solid 1px; border-radius: 10%; width: 30vw">
+    FLICKR API</h1>
   </div>
 
+  <%= render 'form' %>
+</header>
+<div>
   <div style="display: flex; justify-content: center; flex-direction: column; font-size: 13px">
     <% if @user_info %>
       <p style="text-align: center;">USERNAME: <b><%= @user_info.username %></b></p>
