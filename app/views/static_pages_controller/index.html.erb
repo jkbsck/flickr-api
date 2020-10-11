@@ -1,0 +1,47 @@
+<h1 style="text-align: center;">FLICKR API</h1>
+
+<div>
+  <div style="display: flex; justify-content: space-evenly; padding: 5vh; border-bottom: solid 1px; font-size: 12px;">
+    <div>
+      <%= form_with url: '/', local: true, method: "get" do |f| %>
+        <%= f.label 'Photos by User ID:' %>
+        <%= f.text_field :user_id %><br>
+        <%= f.submit 'Search' %>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form_with url: '/', local: true, method: "get" do |f| %>
+        <%= f.label 'User info by User ID:' %>
+        <%= f.text_field :user_info %><br>
+        <%= f.submit 'Search' %>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form_with url: '/', local: true, method: "get" do |f| %>
+        <%= f.hidden_field :newest_photo, value: true %><br>
+        <%= f.submit 'View the newest photo' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div style="margin: 15px; display: flex; justify-content: space-evenly;">
+    <% if @photos %>
+      <% @photos.each do |photo| %>
+        <img src=<%=Flickr.url(photo)%> ><br>
+      <% end %>
+    <% end %>
+
+    <% if @photo %>
+        <img src=<%=Flickr.url(@photo)%> ><br>
+    <% end %>
+
+    <% if @user_info %>
+      USERNAME: <b><%= @user_info.username %></b><br>
+      ID: <b><%= @user_info.nsid %></b><br>
+      REAL NAME: <b><%= @user_info.realname %></b><br>
+      NUMBER OF PHOTOS: <b><%= @user_info.photos.count %></b><br>
+    <% end %>
+  </div>
+</div>
